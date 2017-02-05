@@ -2,7 +2,9 @@
 
 var gameOptions = {
   windowW: document.body.offsetWidth,
-  windowH: document.body.offsetHeight
+  windowH: document.body.offsetHeight,
+  tileW: 100,
+  tileH: 100
 }
 console.log(gameOptions)
 
@@ -23,4 +25,3 @@ Main.prototype = {
 
 game.state.add('Main', Main);
 game.state.start('Main');
-

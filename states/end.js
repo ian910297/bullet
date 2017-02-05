@@ -1,3 +1,5 @@
-class EndState {
+var End = function () {};
 
-}
+End.prototype = {
+
+};
