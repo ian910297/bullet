@@ -1,7 +1,7 @@
 'use strict';
 
 function preload() {
-  game.load.image('ball', `${AssetHome}/ball.png`)
+  game.load.image('ball', '/assets/ball.png');
 }
 
 function create() {
