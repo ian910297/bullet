@@ -1,9 +1,6 @@
-'use strict';
-
-class DemoState extends GameState {
+var Play = function () {};
+Play.prototype = {
   preload() {
-    super.preload();
-
     game.load.image('bg', '/assets/textures/wood_by_EricHart3d.png');
     game.load.image('iconFire', '/assets/icons/fire.png');
     game.load.image('iconIce', '/assets/icons/ice.png');
@@ -23,7 +20,8 @@ class DemoState extends GameState {
 
     game.load.atlas('bolt', '/files/phaser/assets/spells/bolt/atlas.png', '/files/phaser/assets/spells/bolt/atlas.json');
 */
-  }
+  },
+
   create() {
     game.juicy = game.plugins.add(new Phaser.Plugin.Juicy(this));
     // add game background a group so it doesn't get sorted with the game.world
@@ -78,7 +76,7 @@ class DemoState extends GameState {
     this.enableInput(iceCage, Phaser.KeyCode.FOUR);
     this.enableInput(fireStorm, Phaser.KeyCode.FIVE);
     */
-  }
+  },
 
   enableInput(spell, keycode) {
     game.input.keyboard.addKey(keycode).onDown.add(() => {
@@ -89,7 +87,7 @@ class DemoState extends GameState {
     spell.icon.events.onInputDown.add((icon) => {
       this.castSpell(spell);
     });
-  }
+  },
 
   castSpell(spell) {
     if(spell.active) {
@@ -99,7 +97,7 @@ class DemoState extends GameState {
           spell.cast();
       });
     }
-  }
+  },
 
   createZombie(x, y) {
     let zombie = game.add.sprite(x, y, 'zombie1');
@@ -123,7 +121,7 @@ class DemoState extends GameState {
 
     // store in our regular array
     this.zombies.push(zombie);
-  }
+  },
 
   update() {
     game.world.sort('y', Phaser.Group.SORT_ASCENDING);
@@ -131,11 +129,9 @@ class DemoState extends GameState {
     this.magicBolt.update();
     this.fireStorm.update();
     */
-  }
+  },
 
   render() {
-    super.render();
-
     game.debug.text('Press 1 - magic bolt', 400, 400);
     game.debug.text('2 - fire wall', 430, 416);
     game.debug.text('3 - lightning bolt', 430, 432);

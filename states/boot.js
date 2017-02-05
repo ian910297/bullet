@@ -1,0 +1,15 @@
+var Boot = function () {};
+
+Boot.prototype = {
+  preload () {
+    game.load.image('boot-bg', '/assets/boot-bg.jpg');
+    game.load.script('load', '/states/load.js');
+    console.log('Boot');
+  },
+
+  create () {
+    game.state.add('Load', Load);
+    game.state.start('Load');
+  }
+};
+
