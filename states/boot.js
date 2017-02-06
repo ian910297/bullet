@@ -1,33 +1,58 @@
 var Boot = function () {};
 
 Boot.prototype = {
-  preload () {
-    game.load.image('boot-bg', '/assets/boot-bg.jpg');
+  loadScripts () {
     game.load.script('utils', '/lib/utils.js');
     game.load.script('boot-animation', '/lib/boot-animation.js');
     game.load.script('load', '/states/load.js');
+  },
 
+  loadImages () {
+    game.load.image('boot-bg', '/assets/boot-bg.jpg');
+  },
+
+  loadFonts () {
+
+  },
+
+  preload () {
+    this.loadScripts();
+    this.loadImages();
     console.log('Boot');
   },
 
   async create () {
     var anim = new BootAnimation(800, 600, gameOptions.tileW, gameOptions.tileH);
-    await anim.start('random');
     this.welcomeText();
+    await anim.start('random');
 
     game.state.add('Load', Load);
     game.input.onDown.addOnce(this.touchToContinue, this);
   },
 
   welcomeText () {
-    var text = game.add.text(0, game.world.centerY, '', {font: '48px', fill: '#000000', align: 'center'});
-    text.anchor.setTo(0, 0);
+    var titleStyle = {
+      font: '48px PressStart2P',
+      fill: '#000000',
+      align: 'center'
+    };
+    var title = game.add.text(0, game.world.centerY, '', titleStyle);
+    title.anchor.setTo(0, 0);
+    title.setText('Demonic');
+
+    var nextStyle = {
+      font: '48px PressStart2P',
+      fill: '#000000',
+      align: 'center'
+    };
+    var next = game.add.text(game.world.centerX, game.world._height - 30, '', nextStyle);
     var shineFlag = 0;
+    next.anchor.setTo(0.5, 0.5);
     setInterval(() => {
       if(shineFlag%2 == 0) {
-        text.setText('Touch to continue');
+        next.setText('Touch to continue');
       } else {
-        text.setText('Touch to continue ...');
+        next.setText('Touch to continue ...');
       }
       shineFlag += 1;
     }, 500);
