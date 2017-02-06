@@ -5,9 +5,15 @@ var gameOptions = {
   windowH: document.body.offsetHeight,
   tileW: 100,
   tileH: 100,
-  tileTime: 1
-}
-console.log(gameOptions)
+  tileTime: 1,
+  enemy: {
+    name: 'ball',
+    hp: 10,
+    attackPower: 10,
+    speed: 1
+  }
+};
+console.log(gameOptions);
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
 

@@ -1,15 +1,8 @@
 var Play = function () {};
 Play.prototype = {
   preload() {
-    game.load.image('bg', '/assets/textures/wood_by_EricHart3d.png');
-    game.load.image('iconFire', '/assets/icons/fire.png');
-    game.load.image('iconIce', '/assets/icons/ice.png');
-    game.load.atlas('player', '/assets/atlas/knight.png', '/assets/atlas/knight.json');
 
-
-    game.load.atlas('ice', '/assets/spells/fire.png', '/assets/spells/ice.json');
-    game.load.atlas('flame', '/assets/spells/fire.png', '/assets/spells/fire.json');
-    game.load.image('burnMark', '/assets/spells/burnmark.png');
+    console.log('Play');
 /*
     game.load.image('groundCrack', '/files/phaser/assets/spells/groundcrack.png');
     game.load.image('iconMagicBolt', '/files/phaser/assets/icons/fireball-eerie-2.png');
@@ -33,6 +26,15 @@ Play.prototype = {
     bgGroup.add(bg);
     this.player = new Player(game.world.centerX, game.world.centerY, 'player');
 
+    var pl = {
+      ap: 2
+    };
+    // enemy
+    var enemy = new Enemy(0, 0, 0, game.world._height);
+    enemy.sprite.events.onInputDown.add(enemy.checkHP, this, 0, pl.ap);
+    enemy.start();
+    setInterval(()=>{pl.ap+=1;console.log(pl.ap);}, 1000);
+    /*
     // icon position, icon key, cooldown, duration
     let fire = new Fire(130, 430, 'iconFire', 1000, 3000);
     let ice = new Ice(290, 430, 'iconIce', 3000, 2000);
@@ -41,6 +43,7 @@ Play.prototype = {
     game.input.addPointer();
     this.enableInput(fire, Phaser.KeyCode.TWO);
     this.enableInput(ice, Phaser.KeyCode.TWO);
+    */
 /*
 
     this.zombies = [];

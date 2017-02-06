@@ -41,18 +41,18 @@ Boot.prototype = {
     title.setText('Demonic');
 
     var nextStyle = {
-      font: '48px PressStart2P',
+      font: '30px PressStart2P',
       fill: '#000000',
       align: 'center'
     };
-    var next = game.add.text(game.world.centerX, game.world._height - 30, '', nextStyle);
+    var next = game.add.text(30, game.world._height - 60, '', nextStyle);
     var shineFlag = 0;
-    next.anchor.setTo(0.5, 0.5);
+    next.anchor.setTo(0, 0);
     setInterval(() => {
       if(shineFlag%2 == 0) {
-        next.setText('Touch to continue');
+        next.setText('be continue');
       } else {
-        next.setText('Touch to continue ...');
+        next.setText('be continue ...');
       }
       shineFlag += 1;
     }, 500);
