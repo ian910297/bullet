@@ -3,8 +3,8 @@
 var gameOptions = {
   windowW: document.body.offsetWidth,
   windowH: document.body.offsetHeight,
-  tileW: 25,
-  tileH: 25,
+  tileW: 100,
+  tileH: 100,
   tileTime: 1
 }
 console.log(gameOptions)
