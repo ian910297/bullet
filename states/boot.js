@@ -4,6 +4,10 @@ Boot.prototype = {
   loadScripts () {
     game.load.script('utils', '/lib/utils.js');
     game.load.script('boot-animation', '/lib/boot-animation.js');
+    game.load.script('alphabet', '/lib/pixel-animation/font/5x9-pixel-font.js');
+    game.load.script('pixel-animation', '/lib/pixel-animation/pixel-animation.js');
+
+    // State
     game.load.script('load', '/states/load.js');
   },
 
@@ -22,9 +26,14 @@ Boot.prototype = {
   },
 
   async create () {
+    /*
     var anim = new BootAnimation(800, 600, gameOptions.tileW, gameOptions.tileH);
     this.welcomeText();
     await anim.start('random');
+    */
+    var anim = new PixelAnimation('DEMONIC', 100, 100, gameOptions.tileW, gameOptions.tileH, alphabet);
+    anim.init();
+    anim.start('random');
 
     game.state.add('Load', Load);
     game.input.onDown.addOnce(this.touchToContinue, this);

@@ -3,8 +3,8 @@
 var gameOptions = {
   windowW: document.body.offsetWidth,
   windowH: document.body.offsetHeight,
-  tileW: 100,
-  tileH: 100,
+  tileW: 10,
+  tileH: 10,
   tileTime: 1,
   enemy: {
     name: 'ball',
