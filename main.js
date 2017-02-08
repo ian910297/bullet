@@ -1,6 +1,4 @@
-'use strict';
-
-var gameOptions = {
+let gameOptions = {
   windowW: document.body.offsetWidth,
   windowH: document.body.offsetHeight,
   tileW: 10,
@@ -15,14 +13,13 @@ var gameOptions = {
 };
 console.log(gameOptions);
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
+let game = new Phaser.Game(800, 600, Phaser.AUTO, '');
 
-var Main = function () {};
-Main.prototype = {
+class Main {
   preload () {
     game.load.script('boot', '/states/boot.js');
     console.log('Main');
-  },
+  }
 
   create () {
     game.state.add('Boot', Boot);

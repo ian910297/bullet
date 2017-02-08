@@ -1,5 +1,4 @@
-var Play = function () {};
-Play.prototype = {
+class Play {
   preload() {
 
     console.log('Play');
@@ -13,7 +12,7 @@ Play.prototype = {
 
     game.load.atlas('bolt', '/files/phaser/assets/spells/bolt/atlas.png', '/files/phaser/assets/spells/bolt/atlas.json');
 */
-  },
+  }
 
   create() {
     game.juicy = game.plugins.add(new Phaser.Plugin.Juicy(this));
@@ -26,14 +25,13 @@ Play.prototype = {
     bgGroup.add(bg);
     this.player = new Player(game.world.centerX, game.world.centerY, 'player');
 
-    var pl = {
-      ap: 2
-    };
+    let pl = {ap: 0};
+
     // enemy
-    var enemy = new Enemy(0, 0, 0, game.world._height);
-    enemy.sprite.events.onInputDown.add(enemy.checkHP, this, 0, pl.ap);
+    let enemy = new Enemy(0, 0, 0, game.world._height);
+    enemy.sprite.events.onInputDown.add(enemy.checkHP, this, 0, pl);
     enemy.start();
-    setInterval(()=>{pl.ap+=1;console.log(pl.ap);}, 1000);
+    setInterval(()=>{pl.ap+=1; console.log(pl.ap);}, 1000);
     /*
     // icon position, icon key, cooldown, duration
     let fire = new Fire(130, 430, 'iconFire', 1000, 3000);
@@ -47,8 +45,8 @@ Play.prototype = {
 /*
 
     this.zombies = [];
-    var offsetX = 120;
-    var offsetY = 110;
+    let offsetX = 120;
+    let offsetY = 110;
     for(let y = 1; y < 4; y++) {
         for(let x = 1; x < 5; x++) {
             let posx = x * 100 + ((y % 2) ? 0 : 50) + offsetX;
@@ -79,7 +77,7 @@ Play.prototype = {
     this.enableInput(iceCage, Phaser.KeyCode.FOUR);
     this.enableInput(fireStorm, Phaser.KeyCode.FIVE);
     */
-  },
+  }
 
   enableInput(spell, keycode) {
     game.input.keyboard.addKey(keycode).onDown.add(() => {
@@ -90,7 +88,7 @@ Play.prototype = {
     spell.icon.events.onInputDown.add((icon) => {
       this.castSpell(spell);
     });
-  },
+  }
 
   castSpell(spell) {
     if(spell.active) {
@@ -100,15 +98,15 @@ Play.prototype = {
           spell.cast();
       });
     }
-  },
+  }
 
   createZombie(x, y) {
     let zombie = game.add.sprite(x, y, 'zombie1');
     zombie.anchor.setTo(0.5, 0.5);
 
-    var idle = zombie.animations.add('idle', [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]);
-    var die = zombie.animations.add('die', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
-    var raise = zombie.animations.add('raise', [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
+    let idle = zombie.animations.add('idle', [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]);
+    let die = zombie.animations.add('die', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+    let raise = zombie.animations.add('raise', [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
     zombie.play('raise', 10, false);
     zombie.scale.setTo(-0.4, 0.4);
     // everytime a zombie dies, we raise them back
@@ -124,7 +122,7 @@ Play.prototype = {
 
     // store in our regular array
     this.zombies.push(zombie);
-  },
+  }
 
   update() {
     game.world.sort('y', Phaser.Group.SORT_ASCENDING);
@@ -132,7 +130,7 @@ Play.prototype = {
     this.magicBolt.update();
     this.fireStorm.update();
     */
-  },
+  }
 
   render() {
     game.debug.text('Press 1 - magic bolt', 400, 400);

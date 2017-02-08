@@ -1,6 +1,4 @@
-var Boot = function () {};
-
-Boot.prototype = {
+class Boot {
   loadScripts () {
     game.load.script('utils', '/lib/utils.js');
     game.load.script('boot-animation', '/lib/boot-animation.js');
@@ -9,53 +7,53 @@ Boot.prototype = {
 
     // State
     game.load.script('load', '/states/load.js');
-  },
+  }
 
   loadImages () {
     game.load.image('boot-bg', '/assets/boot-bg.jpg');
-  },
+  }
 
   loadFonts () {
 
-  },
+  }
 
   preload () {
     this.loadScripts();
     this.loadImages();
     console.log('Boot');
-  },
+  }
 
   async create () {
     /*
-    var anim = new BootAnimation(800, 600, gameOptions.tileW, gameOptions.tileH);
+    let anim = new BootAnimation(800, 600, gameOptions.tileW, gameOptions.tileH);
     this.welcomeText();
     await anim.start('random');
     */
-    var anim = new PixelAnimation('DEMONIC', 100, 100, gameOptions.tileW, gameOptions.tileH, alphabet);
+    let anim = new PixelAnimation('DEMONIC', 100, 100, gameOptions.tileW, gameOptions.tileH, alphabet);
     anim.init();
     anim.start('random');
 
     game.state.add('Load', Load);
     game.input.onDown.addOnce(this.touchToContinue, this);
-  },
+  }
 
   welcomeText () {
-    var titleStyle = {
+    let titleStyle = {
       font: '48px PressStart2P',
       fill: '#000000',
       align: 'center'
     };
-    var title = game.add.text(0, game.world.centerY, '', titleStyle);
+    let title = game.add.text(0, game.world.centerY, '', titleStyle);
     title.anchor.setTo(0, 0);
     title.setText('Demonic');
 
-    var nextStyle = {
+    let nextStyle = {
       font: '30px PressStart2P',
       fill: '#000000',
       align: 'center'
     };
-    var next = game.add.text(30, game.world._height - 60, '', nextStyle);
-    var shineFlag = 0;
+    let next = game.add.text(30, game.world._height - 60, '', nextStyle);
+    let shineFlag = 0;
     next.anchor.setTo(0, 0);
     setInterval(() => {
       if(shineFlag%2 == 0) {
@@ -65,10 +63,9 @@ Boot.prototype = {
       }
       shineFlag += 1;
     }, 500);
-  },
+  }
 
   touchToContinue () {
     game.state.start('Load');
   }
-};
-
+}

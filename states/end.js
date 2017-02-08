@@ -1,5 +1,3 @@
-var End = function () {};
+class End {
 
-End.prototype = {
-
-};
+}

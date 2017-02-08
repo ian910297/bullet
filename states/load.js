@@ -1,6 +1,4 @@
-var Load = function () {}
-
-Load.prototype = {
+class Load {
   loadScripts () {
     // State
     game.load.script('play', '/states/play.js');
@@ -12,7 +10,7 @@ Load.prototype = {
     game.load.script('spell', '/lib/spell/spell.js');
     game.load.script('spell', '/lib/spell/fire.js');
     game.load.script('spell', '/lib/spell/ice.js');
-  },
+  }
 
   loadImages () {
     // Play State
@@ -22,7 +20,7 @@ Load.prototype = {
     game.load.image('burnMark', '/assets/spells/burnmark.png');
 
     game.load.image('ball', '/assets/ball.png');
-  },
+  }
 
   loadAtlas () {
     // Play State
@@ -30,12 +28,12 @@ Load.prototype = {
 
     game.load.atlas('ice', '/assets/spells/fire.png', '/assets/spells/ice.json');
     game.load.atlas('flame', '/assets/spells/fire.png', '/assets/spells/fire.json');
-  },
+  }
 
   init () {
     this.loadingText = game.add.text(200, 270, 'Loading');
     this.loadingText.setStyle({ fill: '#ffffff' });
-  },
+  }
 
   preload () {
     this.loadScripts();
@@ -43,21 +41,20 @@ Load.prototype = {
     this.loadAtlas();
 
     console.log('Load');
-  },
+  }
 
   loadUpdate () {
     // update loading text percent
     this.loadingText.setText(game.load.progress);
-  },
+  }
 
   addState () {
     game.state.add('Play', Play);
     game.state.add('Menu', Menu);
-  },
+  }
 
   create () {
     this.addState();
     game.state.start('Play');
   }
-};
-
+}
