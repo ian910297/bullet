@@ -4,6 +4,12 @@ let gameOptions = {
   tileW: 10,
   tileH: 10,
   tileTime: 1,
+  player: {
+    maxhp: 100,
+    atk: 3,
+    recover: 0,
+    money: 100
+  },
   enemy: {
     name: 'ball',
     hp: 10,

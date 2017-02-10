@@ -2,14 +2,15 @@ class Load {
   loadScripts () {
     // State
     game.load.script('play', '/states/play.js');
-    game.load.script('menu', '/states/menu.js');
 
     // Lib
     game.load.script('player', '/lib/player.js');
     game.load.script('enemy', '/lib/enemy.js');
+    game.load.script('menu', '/lib/menu.js');
     game.load.script('spell', '/lib/spell/spell.js');
-    game.load.script('spell', '/lib/spell/fire.js');
-    game.load.script('spell', '/lib/spell/ice.js');
+    game.load.script('fire', '/lib/spell/fire.js');
+    game.load.script('ice', '/lib/spell/ice.js');
+    game.load.script('pie-progress', '/lib/spell/pieprogress.js');
   }
 
   loadImages () {
@@ -19,6 +20,7 @@ class Load {
     game.load.image('iconIce', '/assets/icons/ice.png');
     game.load.image('burnMark', '/assets/spells/burnmark.png');
 
+    game.load.image('menu-bg', '/assets/textures/cyberglow.png');
     game.load.image('ball', '/assets/ball.png');
   }
 

@@ -23,15 +23,14 @@ class Boot {
     console.log('Boot');
   }
 
-  async create () {
+  create () {
     /*
     let anim = new BootAnimation(800, 600, gameOptions.tileW, gameOptions.tileH);
     this.welcomeText();
     await anim.start('random');
     */
     let anim = new PixelAnimation('DEMONIC', 100, 100, gameOptions.tileW, gameOptions.tileH, alphabet);
-    anim.init();
-    anim.start('random');
+    anim.init().start('random');
 
     game.state.add('Load', Load);
     game.input.onDown.addOnce(this.touchToContinue, this);

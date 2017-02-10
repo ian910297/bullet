@@ -1,21 +1,9 @@
 class Play {
   preload() {
-
     console.log('Play');
-/*
-    game.load.image('groundCrack', '/files/phaser/assets/spells/groundcrack.png');
-    game.load.image('iconMagicBolt', '/files/phaser/assets/icons/fireball-eerie-2.png');
-    game.load.image('iconLightningBolt', '/files/phaser/assets/icons/Thunder.png');
-    game.load.image('iconFireStorm', '/files/phaser/assets/icons/fire-arrows-3.png');
-
-    game.load.atlas('zombie1', '/files/phaser/assets/zombie1/atlas.png', '/files/phaser/assets/zombie1/atlas.json');
-
-    game.load.atlas('bolt', '/files/phaser/assets/spells/bolt/atlas.png', '/files/phaser/assets/spells/bolt/atlas.json');
-*/
   }
 
   create() {
-    game.juicy = game.plugins.add(new Phaser.Plugin.Juicy(this));
     // add game background a group so it doesn't get sorted with the game.world
     // when we sort it during update
     let bgGroup = game.add.group();
@@ -31,15 +19,25 @@ class Play {
     let enemy = new Enemy(0, 0, 0, game.world._height);
     enemy.sprite.events.onInputDown.add(enemy.checkHP, this, 0, pl);
     enemy.start();
-    setInterval(()=>{pl.ap+=1; console.log(pl.ap);}, 1000);
-    /*
+
+    // menu_label
+    let menu_label = game.add.text(300, 20, 'Menu', { font: '24px Arial', fill: '#fff' });
+    menu_label.inputEnabled = true;
+    menu_label.events.onInputUp.add(() => {
+      game.paused = true;
+      this.menu = new Menu(this.player);
+      this.menu.init();
+    });
+    game.input.onDown.add(this.unpaused, this);
+
     // icon position, icon key, cooldown, duration
     let fire = new Fire(130, 430, 'iconFire', 1000, 3000);
-    let ice = new Ice(290, 430, 'iconIce', 3000, 2000);
-
     // create keyboard and touch inputs
     game.input.addPointer();
     this.enableInput(fire, Phaser.KeyCode.TWO);
+    /*
+    let ice = new Ice(290, 430, 'iconIce', 3000, 2000);
+
     this.enableInput(ice, Phaser.KeyCode.TWO);
     */
 /*
@@ -77,6 +75,21 @@ class Play {
     this.enableInput(iceCage, Phaser.KeyCode.FOUR);
     this.enableInput(fireStorm, Phaser.KeyCode.FIVE);
     */
+  }
+
+  unpaused(event) {
+    if(game.paused) {
+      let x1 = 200;
+      let x2 = 600;
+      let y1 = 150;
+      let y2 = 450;
+      if(event.x>x1 && event.x<x2 && event.y>y1 && event.y<y2) {
+        console.log('click')
+      } else {
+        game.paused = false;
+        this.menu.destroy();
+      }
+    }
   }
 
   enableInput(spell, keycode) {
@@ -130,13 +143,5 @@ class Play {
     this.magicBolt.update();
     this.fireStorm.update();
     */
-  }
-
-  render() {
-    game.debug.text('Press 1 - magic bolt', 400, 400);
-    game.debug.text('2 - fire wall', 430, 416);
-    game.debug.text('3 - lightning bolt', 430, 432);
-    game.debug.text('4 - ice cage', 430, 448);
-    game.debug.text('5 - fire storm', 430, 464);
   }
 }
