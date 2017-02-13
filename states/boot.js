@@ -1,7 +1,6 @@
 class Boot {
   loadScripts () {
     game.load.script('utils', '/lib/utils.js');
-    game.load.script('boot-animation', '/lib/boot-animation.js');
     game.load.script('alphabet', '/lib/pixel-animation/font/5x9-pixel-font.js');
     game.load.script('pixel-animation', '/lib/pixel-animation/pixel-animation.js');
 
